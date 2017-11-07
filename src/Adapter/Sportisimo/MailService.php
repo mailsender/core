@@ -6,13 +6,13 @@
  * Time: 21:37
  */
 
-namespace Oli\MailServer\Adapter\Sportisimo;
+namespace Mailsender\MailSet\Adapter\Sportisimo;
 
-use Oli\MailServer\Adapter\Sportisimo\Entity\Mail;
-use Oli\MailServer\Entity\IMail;
-use Oli\MailServer\IDatabaseAdapter;
-use Oli\MailServer\IMailService;
-use Oli\MailServer\ISenderAdapter;
+use Mailsender\MailSet\Adapter\Sportisimo\Entity\Mail;
+use Mailsender\MailSet\Entity\IMail;
+use Mailsender\MailSet\IDatabaseAdapter;
+use Mailsender\MailSet\IMailService;
+use Mailsender\MailSet\ISenderAdapter;
 use Ramsey\Uuid\Uuid;
 
 final class MailService implements IMailService

@@ -14,6 +14,13 @@
             "email": "petr.olisar@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Mailsender\\MailSet\\": [
+                "src/"
+            ]
+        }
+    },
     "require": {
         "php": ">= 7.1",
         "guzzlehttp/guzzle": "^6.3"

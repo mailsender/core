@@ -6,11 +6,11 @@
  * Time: 21:45
  */
 
-namespace Oli\MailServer\Adapter\Sportisimo;
+namespace Mailsender\MailSet\Adapter\Sportisimo;
 
-use Oli\MailServer\Adapter\Sportisimo\Entity\MailType;
-use Oli\MailServer\Entity\IMailType;
-use Oli\MailServer\IDatabaseAdapter;
+use Mailsender\MailSet\Adapter\Sportisimo\Entity\MailType;
+use Mailsender\MailSet\Entity\IMailType;
+use Mailsender\MailSet\IDatabaseAdapter;
 use Sportisimo\Core\Database\IDatabase;
 
 class PDODatabaseAdapter implements IDatabaseAdapter

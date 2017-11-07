@@ -6,7 +6,7 @@
  * Time: 21:17
  */
 
-namespace Oli\MailServer\Entity;
+namespace Mailsender\MailSet\Entity;
 
 use DateTimeInterface;
 

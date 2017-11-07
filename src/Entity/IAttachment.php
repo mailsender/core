@@ -6,7 +6,7 @@
  * Time: 21:12
  */
 
-namespace Oli\MailServer\Entity;
+namespace Mailsender\MailSet\Entity;
 
 interface IAttachment
 {

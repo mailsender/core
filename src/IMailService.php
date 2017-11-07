@@ -6,9 +6,9 @@
  * Time: 21:32
  */
 
-namespace Oli\MailServer;
+namespace Mailsender\MailSet;
 
-use Oli\MailServer\Entity\IMail;
+use Mailsender\MailSet\Entity\IMail;
 
 interface IMailService
 {

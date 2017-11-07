@@ -6,17 +6,17 @@
  * Time: 21:07
  */
 
-namespace Oli\MailServer\Adapter\Sportisimo\Entity;
+namespace Mailsender\MailSet\Adapter\Sportisimo\Entity;
 
-use Oli\MailServer\Entity\IAttachment;
-use Oli\MailServer\Entity\IContact;
-use Oli\MailServer\Entity\IMailType;
+use Mailsender\MailSet\Entity\IAttachment;
+use Mailsender\MailSet\Entity\IContact;
+use Mailsender\MailSet\Entity\IMailType;
 use Sportisimo\Core\Database\Entities\APrimaryEntity;
 use Sportisimo\Core\Database\IDatabase;
 
 /**
  * Class MailType
- * @package Oli\MailServer\Entity
+ * @package Mailsender\MailSet\Entity
  */
 final class MailType extends APrimaryEntity implements IMailType
 {

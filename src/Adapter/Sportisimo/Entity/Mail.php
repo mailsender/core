@@ -6,13 +6,13 @@
  * Time: 21:29
  */
 
-namespace Oli\MailServer\Adapter\Sportisimo\Entity;
+namespace Mailsender\MailSet\Adapter\Sportisimo\Entity;
 
 use DateTimeInterface;
-use Oli\MailServer\Entity\IAttachment;
-use Oli\MailServer\Entity\IContact;
-use Oli\MailServer\Entity\IMail;
-use Oli\MailServer\Entity\IMailType;
+use Mailsender\MailSet\Entity\IAttachment;
+use Mailsender\MailSet\Entity\IContact;
+use Mailsender\MailSet\Entity\IMail;
+use Mailsender\MailSet\Entity\IMailType;
 
 final class Mail implements IMail
 {

@@ -6,7 +6,7 @@
  * Time: 21:07
  */
 
-namespace Oli\MailServer\Entity;
+namespace Mailsender\MailSet\Entity;
 
 interface IMailType
 {

@@ -6,7 +6,7 @@
  * Time: 21:11
  */
 
-namespace Oli\MailServer\Entity;
+namespace Mailsender\MailSet\Entity;
 
 interface IContact
 {

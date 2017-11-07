@@ -6,7 +6,7 @@
  * Time: 21:31
  */
 
-namespace Oli\MailServer\Entity;
+namespace Mailsender\MailSet\Entity;
 
 final class Attachment
 {

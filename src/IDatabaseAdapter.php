@@ -6,9 +6,9 @@
  * Time: 21:43
  */
 
-namespace Oli\MailServer;
+namespace Mailsender\MailSet;
 
-use Oli\MailServer\Entity\IMailType;
+use Mailsender\MailSet\Entity\IMailType;
 
 interface IDatabaseAdapter
 {

@@ -6,14 +6,14 @@
  * Time: 18:29
  */
 
-namespace Oli\MailServer;
+namespace Mailsender\MailSet;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\RequestOptions;
-use Oli\MailServer\Entity\IMail;
+use Mailsender\MailSet\Entity\IMail;
 
 class MailServerAdapter implements ISenderAdapter
 {

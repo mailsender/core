@@ -6,7 +6,7 @@
  * Time: 21:29
  */
 
-namespace Oli\MailServer\Entity;
+namespace Mailsender\MailSet\Entity;
 
 final class Contact
 {
