@@ -1,5 +1,5 @@
 {
-    "name": "olicek/mail-server",
+    "name": "mailsender/mail-set",
     "description": "Library make easy create mail and send it throw several interfaces",
     "type": "library",
     "require-dev": {
@@ -15,7 +15,8 @@
         }
     ],
     "require": {
-        "php": ">= 7.1"
+        "php": ">= 7.1",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "suggest": {
         "ramsey/uuid": "Allows generate uuid"
