@@ -10,7 +10,7 @@ namespace Mailsender\MailSet\Entity;
 
 use DateTimeInterface;
 
-interface IMail
+interface IMail extends \JsonSerializable
 {
 
 	/**

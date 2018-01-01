@@ -13,6 +13,7 @@ use Mailsender\MailSet\Entity\IAttachment;
 use Mailsender\MailSet\Entity\IContact;
 use Mailsender\MailSet\Entity\IMail;
 use Mailsender\MailSet\Entity\IMailType;
+use Ramsey\Uuid\Uuid;
 
 final class Mail implements IMail
 {
@@ -78,12 +79,36 @@ final class Mail implements IMail
 	private $dataSent;
 
 	/**
+	 * Fullfill parameters from encoded string.
+	 * @param string $encodedJson
+	 */
+	public function setJson(string $encodedJson)
+	{
+		foreach(json_decode($encodedJson) as $key => $val)
+		{
+			if(property_exists(__CLASS__, $key))
+			{
+				$this->$key =  $val;
+			}
+		}
+	}
+
+	/**
+	 * Set mail type and pre-fill all pre-fillable parameters.
 	 * @param IMailType $mailType
 	 * @return Mail
 	 */
 	public function setMailType(IMailType $mailType): Mail
 	{
 		$this->mailType = $mailType;
+
+		$this->setSender($mailType->getSender());
+		$this->setSubject($mailType->getSubject());
+		$this->setAttachments($mailType->getAttachments());
+		$this->setBccRecipients($mailType->getBccRecipients());
+		$this->setCharset($mailType->getCharset());
+		$this->setDateCreated(new \DateTime());
+		$this->setHashcode(md5(Uuid::uuid4()));
 
 		return $this;
 	}
@@ -114,7 +139,7 @@ final class Mail implements IMail
 	 * @param null|string $subject
 	 * @return Mail
 	 */
-	public function setSubject($subject)
+	public function setSubject($subject): Mail
 	{
 		$this->subject = $subject;
 
@@ -125,7 +150,7 @@ final class Mail implements IMail
 	 * @param array|IAttachment[] $attachments
 	 * @return Mail
 	 */
-	public function setAttachments($attachments)
+	public function setAttachments($attachments): Mail
 	{
 		$this->attachments = $attachments;
 
@@ -136,7 +161,7 @@ final class Mail implements IMail
 	 * @param array|IContact[] $bccRecipients
 	 * @return Mail
 	 */
-	public function setBccRecipients($bccRecipients)
+	public function setBccRecipients($bccRecipients): Mail
 	{
 		$this->bccRecipients = $bccRecipients;
 
@@ -203,7 +228,7 @@ final class Mail implements IMail
 	 */
 	public function getId(): int
 	{
-		// TODO: Implement getInt() method.
+		return $this->id;
 	}
 
 	/**
@@ -211,7 +236,7 @@ final class Mail implements IMail
 	 */
 	public function getMailType(): IMailType
 	{
-		// TODO: Implement getMailType() method.
+		return $this->mailType;
 	}
 
 	/**
@@ -219,7 +244,7 @@ final class Mail implements IMail
 	 */
 	public function getRecipient(): IContact
 	{
-		// TODO: Implement getRecipient() method.
+		return $this->recipient;
 	}
 
 	/**
@@ -227,7 +252,7 @@ final class Mail implements IMail
 	 */
 	public function getSender(): IContact
 	{
-		// TODO: Implement getSender() method.
+		return $this->sender;
 	}
 
 	/**
@@ -235,23 +260,23 @@ final class Mail implements IMail
 	 */
 	public function getSubject(): ?string
 	{
-		// TODO: Implement getSubject() method.
+		return $this->subject;
 	}
 
 	/**
-	 * @return IAttachment[]|array
+	 * @return array|IAttachment[]
 	 */
 	public function getAttachments(): array
 	{
-		// TODO: Implement getAttachments() method.
+		return $this->attachments;
 	}
 
 	/**
-	 * @return IContact[]|array
+	 * @return array|IContact[]
 	 */
 	public function getBccRecipients(): array
 	{
-		// TODO: Implement getBccRecipients() method.
+		return $this->bccRecipients;
 	}
 
 	/**
@@ -259,7 +284,7 @@ final class Mail implements IMail
 	 */
 	public function getCharset(): string
 	{
-		// TODO: Implement getCharset() method.
+		return $this->charset;
 	}
 
 	/**
@@ -267,7 +292,7 @@ final class Mail implements IMail
 	 */
 	public function getDateCreated(): DateTimeInterface
 	{
-		// TODO: Implement dateCreated() method.
+		return $this->dateCreated;
 	}
 
 	/**
@@ -275,7 +300,7 @@ final class Mail implements IMail
 	 */
 	public function getData(): string
 	{
-		// TODO: Implement getData() method.
+		return $this->data;
 	}
 
 	/**
@@ -283,7 +308,7 @@ final class Mail implements IMail
 	 */
 	public function getHashcode(): string
 	{
-		// TODO: Implement hashcode() method.
+		return $this->hashcode;
 	}
 
 	/**
@@ -291,6 +316,19 @@ final class Mail implements IMail
 	 */
 	public function getDateSent(): DateTimeInterface
 	{
-		// TODO: Implement dateSent() method.
+		return $this->dataSent;
 	}
+
+	/**
+	 * Specify data which should be serialized to JSON
+	 * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return array|mixed[] data which can be serialized by <b>json_encode</b>,
+	 * which is a value of any type other than a resource.
+	 * @since 5.4.0
+	 */
+	public function jsonSerialize(): array
+	{
+		return get_object_vars($this);
+	}
+
 }

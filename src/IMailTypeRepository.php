@@ -10,7 +10,7 @@ namespace Mailsender\MailSet;
 
 use Mailsender\MailSet\Entity\IMailType;
 
-interface IDatabaseAdapter
+interface IMailTypeRepository
 {
 
 	/**

@@ -8,6 +8,7 @@
 
 namespace Mailsender\MailSet\Adapter\Sportisimo\Entity;
 
+use Mailsender\MailSet\Entity\Contact;
 use Mailsender\MailSet\Entity\IAttachment;
 use Mailsender\MailSet\Entity\IContact;
 use Mailsender\MailSet\Entity\IMailType;
@@ -22,19 +23,98 @@ final class MailType extends APrimaryEntity implements IMailType
 {
 
 	/**
-	 * @var IDatabase
+	 * Name of table in database.
+	 * @var string
 	 */
-	private $database;
+	public const TABLE = 'sm_mail_types';
+
+	/**
+	 * @var string
+	 */
+	public const NAME = 'name';
+
+	/**
+	 * @var string
+	 */
+	public const SENDER_NAME = 'sender_name';
+
+	/**
+	 * @var string
+	 */
+	public const SENDER_EMAIL = 'sender_email';
+
+	/**
+	 * @var string
+	 */
+	public const SUBJECT = 'subject';
+
+	/**
+	 * @var string
+	 */
+	public const ATTACHMENTS = 'attachments';
+
+	/**
+	 * @var string
+	 */
+	public const BCC_RECIPIENTS = 'bccRecipients';
+
+	/**
+	 * @var string
+	 */
+	public const CHARSET = 'charset';
+
+	/**
+	 * @var string
+	 */
+	public const PRIORITY = 'priority';
+
+	/**
+	 * @var string
+	 */
+	private $name;
+
+	/**
+	 * @var IContact
+	 */
+	private $sender;
+
+	/**
+	 * @var string
+	 */
+	private $subject;
+
+	/**
+	 * @var array|IAttachment[]
+	 */
+	private $attachments;
+
+	/**
+	 * @var array|IContact[]
+	 */
+	private $bccRecipients;
+
+	/**
+	 * @var string
+	 */
+	private $charset;
+
+	/**
+	 * @var int
+	 */
+	private $priority;
 
 	/**
 	 * MailType constructor.
 	 * @param IDatabase $database
 	 * @param int|null $id
 	 * @param null|string $name
-	 * @throws \Sportisimo\Core\Database\Exceptions\DatabaseException
-	 * @throws \Sportisimo\Core\Nette\Exceptions\InvalidArgumentException
-	 * @throws \Sportisimo\Core\Nette\Exceptions\NoResultException
 	 * @throws \Sportisimo\Core\Nette\Exceptions\LogicException
+	 * @throws \Sportisimo\Core\Nette\Exceptions\NoResultException
+	 * @throws \Sportisimo\Core\Nette\Exceptions\InvalidArgumentException
+	 * @throws \Sportisimo\Core\Nette\Exceptions\DuplicateException
+	 * @throws \Sportisimo\Core\Database\Exceptions\LockException
+	 * @throws \Sportisimo\Core\Database\Exceptions\DeadlockException
+	 * @throws \Sportisimo\Core\Database\Exceptions\DatabaseException
 	 */
 	public function __construct(IDatabase $database, ?int $id, ?string $name = null)
 	{
@@ -51,7 +131,12 @@ final class MailType extends APrimaryEntity implements IMailType
 
 	/**
 	 * @param string $name
+	 * @throws \Sportisimo\Core\Nette\Exceptions\DuplicateException
+	 * @throws \Sportisimo\Core\Database\Exceptions\LockException
+	 * @throws \Sportisimo\Core\Database\Exceptions\DeadlockException
 	 * @throws \Sportisimo\Core\Database\Exceptions\DatabaseException
+	 * @throws \Sportisimo\Core\Nette\Exceptions\InvalidArgumentException
+	 * @throws \Sportisimo\Core\Nette\Exceptions\InvalidArgumentException
 	 * @throws \Sportisimo\Core\Nette\Exceptions\InvalidArgumentException
 	 * @throws \Sportisimo\Core\Nette\Exceptions\NoResultException
 	 */
@@ -73,53 +158,78 @@ final class MailType extends APrimaryEntity implements IMailType
 	 */
 	protected function mapping(array $row): void
 	{
-		// TODO: Implement mapping() method.
-	}
-
-	public function getInt(): int
-	{
-		// TODO: Implement getInt() method.
-	}
-
-	public function getName(): string
-	{
-		// TODO: Implement getName() method.
-	}
-
-	public function getSender(): IContact
-	{
-		// TODO: Implement getSender() method.
-	}
-
-	public function getSubject(): string
-	{
-		// TODO: Implement getSubject() method.
+		$this->id = $row[self::ID];
+		$this->name = $row[self::NAME];
+		$this->sender = new Contact($row[self::SENDER_NAME], $row[self::SENDER_EMAIL]);
+		$this->subject = $row[self::SUBJECT];
+		$this->attachments = $row[self::ATTACHMENTS];
+		$this->bccRecipients = $row[self::BCC_RECIPIENTS];
+		$this->charset = $row[self::CHARSET];
+		$this->priority = $row[self::PRIORITY];
 	}
 
 	/**
-	 * @return IAttachment[]|array
+	 * @return int
+	 */
+	public function getId(): int
+	{
+		return $this->id;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName(): string
+	{
+		return $this->name;
+	}
+
+	/**
+	 * @return IContact
+	 */
+	public function getSender(): IContact
+	{
+		return $this->sender;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSubject(): string
+	{
+		return $this->subject;
+	}
+
+	/**
+	 * @return array|IAttachment[]
 	 */
 	public function getAttachments(): array
 	{
-		// TODO: Implement getAttachments() method.
+		return $this->attachments;
 	}
 
 	/**
-	 * @return IContact[]|array
+	 * @return array|IContact[]
 	 */
 	public function getBccRecipients(): array
 	{
-		// TODO: Implement getBccRecipients() method.
+		return $this->bccRecipients;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getCharset(): string
 	{
-		// TODO: Implement getCharset() method.
+		return $this->charset;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getPriority(): int
 	{
-		// TODO: Implement getPriority() method.
+		return $this->priority;
 	}
 
 }

@@ -15,11 +15,11 @@ interface IMailService
 
 	/**
 	 * Create instance of entity IMail.
-	 * @param string $name
+	 * @param string $mailTypeName
 	 * @param string|null $json
 	 * @return IMail
 	 */
-	public function create(string $name, ?string $json = null): IMail;
+	public function create(string $mailTypeName, ?string $json = null): IMail;
 
 	/**
 	 * Send created IMail entity to Sender object.

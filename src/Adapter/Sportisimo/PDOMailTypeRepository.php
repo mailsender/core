@@ -10,10 +10,10 @@ namespace Mailsender\MailSet\Adapter\Sportisimo;
 
 use Mailsender\MailSet\Adapter\Sportisimo\Entity\MailType;
 use Mailsender\MailSet\Entity\IMailType;
-use Mailsender\MailSet\IDatabaseAdapter;
+use Mailsender\MailSet\IMailTypeRepository;
 use Sportisimo\Core\Database\IDatabase;
 
-class PDODatabaseAdapter implements IDatabaseAdapter
+class PDOMailTypeRepository implements IMailTypeRepository
 {
 
 	/**
@@ -33,13 +33,19 @@ class PDODatabaseAdapter implements IDatabaseAdapter
 	/**
 	 * @param string $name
 	 * @return IMailType
-	 * @throws \Sportisimo\Core\Nette\Exceptions\NoResultException
-	 * @throws \Sportisimo\Core\Nette\Exceptions\InvalidArgumentException
-	 * @throws \Sportisimo\Core\Database\Exceptions\DatabaseException
+	 * @throws \Exception
 	 */
 	public function fetchMailTypeByName(string $name): IMailType
 	{
-		return new MailType($this->database, null, $name);
+		try
+		{
+			return new MailType($this->database, null, $name);
+		}
+		catch (\Exception $e)
+		{
+			// TODO: osetrit vyjimky
+			throw $e;
+		}
 	}
 
 }

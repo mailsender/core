@@ -8,7 +8,7 @@
 
 namespace Mailsender\MailSet\Entity;
 
-interface IAttachment
+interface IAttachment extends \JsonSerializable
 {
 
 	public function getFileName(): string;

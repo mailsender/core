@@ -8,7 +8,7 @@
 
 namespace Mailsender\MailSet\Entity;
 
-interface IContact
+interface IContact extends \JsonSerializable
 {
 
 	public function getName(): string;
