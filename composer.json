@@ -1,5 +1,5 @@
 {
-    "name": "mailsender/mail-set",
+    "name": "mailsender/core",
     "description": "Library make easy create mail and send it throw several interfaces",
     "type": "library",
     "require-dev": {
