@@ -8,7 +8,7 @@
 
 namespace Mailsender\MailSet\Entity;
 
-interface IMailType
+interface IMailType extends \JsonSerializable
 {
 
 	/**
