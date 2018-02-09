@@ -10,7 +10,7 @@ namespace Mailsender\MailSet;
 
 use Mailsender\MailSet\Entity\IMail;
 
-interface ISenderAdapter
+interface IMailSender
 {
 
 	public function send(IMail $mail): void;

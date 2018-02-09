@@ -22,9 +22,9 @@ $connection = new \Sportisimo\Core\Database\Connection(
 
 $database = new \Sportisimo\Core\Database\PDODatabase($connection, true);
 
-$mailServerAdapter = new \Mailsender\MailSet\MailServerSender('192.168.33.10');
+$mailServerAdapter = new \Mailsender\MailSet\MailServerMailSender('192.168.33.10');
 
-$pdoMailTypeRepository = new \Mailsender\MailSet\Adapter\Sportisimo\PDOMailTypeRepository($database);
+$pdoMailTypeRepository = new \Mailsender\MailSet\Adapter\Sportisimo\MailTypeRepository($database);
 
 $mailService = new \Mailsender\MailSet\Adapter\Sportisimo\MailService($mailServerAdapter, $pdoMailTypeRepository);
 
@@ -42,6 +42,6 @@ $mailService->send($mail);
 // Nacteni e-mailu z fronty a odeslani zakzanikovi
 $mail = $mailService->create('newsletter123', json_encode($mail));
 
-$klerkSenderAdapter = new \Mailsender\MailSet\Adapter\Sportisimo\KlerkSender('localhost', 456, 'username', 'password', 'tls');
+$klerkSenderAdapter = new \Mailsender\MailSet\Adapter\Sportisimo\MailSender('localhost', 456, 'username', 'password', 'tls');
 $mailService = new \Mailsender\MailSet\Adapter\Sportisimo\MailService($klerkSenderAdapter, $pdoMailTypeRepository);
 $mailService->send($mail);

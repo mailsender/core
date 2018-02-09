@@ -15,7 +15,7 @@ use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\RequestOptions;
 use Mailsender\MailSet\Entity\IMail;
 
-class MailServerSender implements ISenderAdapter
+class MailServerMailSender implements IMailSender
 {
 
 	/**

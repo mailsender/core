@@ -12,13 +12,13 @@ use Mailsender\MailSet\Adapter\Sportisimo\Entity\Mail;
 use Mailsender\MailSet\Entity\IMail;
 use Mailsender\MailSet\IMailService;
 use Mailsender\MailSet\IMailTypeRepository;
-use Mailsender\MailSet\ISenderAdapter;
+use Mailsender\MailSet\IMailSender;
 
 final class MailService implements IMailService
 {
 
 	/**
-	 * @var ISenderAdapter
+	 * @var IMailSender
 	 */
 	private $senderAdapter;
 
@@ -29,10 +29,10 @@ final class MailService implements IMailService
 
 	/**
 	 * MailService constructor.
-	 * @param ISenderAdapter $senderAdapter
+	 * @param IMailSender $senderAdapter
 	 * @param IMailTypeRepository $databaseAdapter
 	 */
-	public function __construct(ISenderAdapter $senderAdapter, IMailTypeRepository $databaseAdapter)
+	public function __construct(IMailSender $senderAdapter, IMailTypeRepository $databaseAdapter)
 	{
 		$this->senderAdapter = $senderAdapter;
 		$this->databaseAdapter = $databaseAdapter;

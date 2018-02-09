@@ -13,7 +13,7 @@ use Mailsender\MailSet\Entity\IMailType;
 use Mailsender\MailSet\IMailTypeRepository;
 use Sportisimo\Core\Database\IDatabase;
 
-class PDOMailTypeRepository implements IMailTypeRepository
+class MailTypeRepository implements IMailTypeRepository
 {
 
 	/**

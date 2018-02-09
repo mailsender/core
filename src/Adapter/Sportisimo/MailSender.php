@@ -9,14 +9,14 @@
 namespace Mailsender\MailSet\Adapter\Sportisimo;
 
 use Mailsender\MailSet\Entity\IMail;
-use Mailsender\MailSet\ISenderAdapter;
+use Mailsender\MailSet\IMailSender;
 use PHPMailer\PHPMailer\PHPMailer;
 
 /**
  * Class KlerkSender
  * @package Mailsender\MailSet\Adapter\Sportisimo
  */
-class KlerkSender implements ISenderAdapter
+class MailSender implements IMailSender
 {
 
 	/**
