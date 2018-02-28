@@ -6,13 +6,17 @@
  * Time: 21:40
  */
 
-namespace Mailsender\MailSet;
+namespace Mailsender\Core\MailSenders;
 
-use Mailsender\MailSet\Entity\IMail;
+use Mailsender\Core\Entity\IMail;
 
 interface IMailSender
 {
 
+	/**
+	 * Send created IMail entity.
+	 * @param IMail $mail
+	 */
 	public function send(IMail $mail): void;
 
 }

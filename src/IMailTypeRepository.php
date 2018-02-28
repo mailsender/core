@@ -6,9 +6,9 @@
  * Time: 21:43
  */
 
-namespace Mailsender\MailSet;
+namespace Mailsender\Core;
 
-use Mailsender\MailSet\Entity\IMailType;
+use Mailsender\Core\Entity\IMailType;
 
 interface IMailTypeRepository
 {

@@ -6,7 +6,7 @@
  * Time: 21:29
  */
 
-namespace Mailsender\MailSet\Entity;
+namespace Mailsender\Core\Entity;
 
 class Contact implements IContact
 {

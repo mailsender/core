@@ -6,7 +6,7 @@
  * Time: 21:17
  */
 
-namespace Mailsender\MailSet\Entity;
+namespace Mailsender\Core\Entity;
 
 use DateTimeInterface;
 

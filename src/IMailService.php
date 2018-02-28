@@ -6,9 +6,9 @@
  * Time: 21:32
  */
 
-namespace Mailsender\MailSet;
+namespace Mailsender\Core;
 
-use Mailsender\MailSet\Entity\IMail;
+use Mailsender\Core\Entity\IMail;
 
 interface IMailService
 {
@@ -16,15 +16,29 @@ interface IMailService
 	/**
 	 * Create instance of entity IMail.
 	 * @param string $mailTypeName
-	 * @param string|null $json
 	 * @return IMail
 	 */
-	public function create(string $mailTypeName, ?string $json = null): IMail;
+	public function create(string $mailTypeName): IMail;
 
 	/**
-	 * Send created IMail entity to Sender object.
-	 * @param IMail $mail
+	 * Return content of the e-mail.
+	 * @param IMail $email
+	 * @return string
 	 */
-	public function send(IMail $mail): void;
+	public function getContent(IMail $email): string;
+
+	/**
+	 * Create e-mail from json.
+	 * @param string $json
+	 * @return IMail
+	 */
+	public function createByJson(string $json): IMail;
+
+	/**
+	 * Create e-mail from ID.
+	 * @param int $id
+	 * @return IMail
+	 */
+	public function createById(int $id): IMail;
 
 }

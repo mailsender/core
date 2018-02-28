@@ -6,7 +6,7 @@
  * Time: 21:12
  */
 
-namespace Mailsender\MailSet\Entity;
+namespace Mailsender\Core\Entity;
 
 interface IAttachment extends \JsonSerializable
 {
@@ -14,5 +14,9 @@ interface IAttachment extends \JsonSerializable
 	public function getFileName(): string;
 
 	public function getPath(): string;
+
+	public function setDeleteAfterSend(bool $deleteAfterSend): IAttachment;
+
+	public function isDeleteAfterSend(): bool;
 
 }

@@ -6,7 +6,7 @@
  * Time: 21:31
  */
 
-namespace Mailsender\MailSet\Entity;
+namespace Mailsender\Core\Entity;
 
 class Attachment implements IAttachment
 {
@@ -20,6 +20,11 @@ class Attachment implements IAttachment
 	 * @var string
 	 */
 	private $path;
+
+	/**
+	 * @var bool
+	 */
+	private $deleteAfterSend = false;
 
 	/**
 	 * Attachment constructor.
@@ -46,6 +51,24 @@ class Attachment implements IAttachment
 	public function getPath(): string
 	{
 		return $this->path;
+	}
+
+	/**
+	 * @param bool $deleteAfterSend
+	 * @return IAttachment
+	 */
+	public function setDeleteAfterSend(bool $deleteAfterSend = true): IAttachment
+	{
+		$this->deleteAfterSend = $deleteAfterSend;
+		return $this;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isDeleteAfterSend(): bool
+	{
+		return $this->deleteAfterSend;
 	}
 
 	/**

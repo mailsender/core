@@ -6,14 +6,15 @@
  * Time: 18:29
  */
 
-namespace Mailsender\MailSet;
+namespace Mailsender\Core;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\RequestOptions;
-use Mailsender\MailSet\Entity\IMail;
+use Mailsender\Core\Entity\IMail;
+use Mailsender\Core\MailSenders\IMailSender;
 
 class MailServerMailSender implements IMailSender
 {

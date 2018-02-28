@@ -6,7 +6,7 @@
  * Time: 21:11
  */
 
-namespace Mailsender\MailSet\Entity;
+namespace Mailsender\Core\Entity;
 
 interface IContact extends \JsonSerializable
 {
