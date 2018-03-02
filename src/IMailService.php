@@ -17,6 +17,7 @@ interface IMailService
 	 * Create instance of entity IMail.
 	 * @param string $mailTypeName
 	 * @return IMail
+	 * @throws \Mailsender\Core\Exceptions\CreateMailException
 	 */
 	public function create(string $mailTypeName): IMail;
 
