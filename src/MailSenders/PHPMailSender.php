@@ -58,9 +58,8 @@ class PHPMailSender implements IMailSender
 	 * @param string $password
 	 * @param string $smtpSecure
 	 * @param IMailService $mailService
-	 * @param PHPMailer $phpMailer
 	 */
-	public function __construct(string $host, int $port, string $username, string $password, string $smtpSecure, IMailService $mailService, PHPMailer $phpMailer)
+	public function __construct(string $host, int $port, string $username, string $password, string $smtpSecure, IMailService $mailService)
 	{
 		$this->host = $host;
 		$this->port = $port;
@@ -68,7 +67,7 @@ class PHPMailSender implements IMailSender
 		$this->password = $password;
 		$this->smtpSecure = $smtpSecure;
 		$this->mailService = $mailService;
-		$this->phpMailer = $phpMailer;
+		$this->phpMailer = new PHPMailer(true);
 	}
 
 	/**
@@ -81,7 +80,7 @@ class PHPMailSender implements IMailSender
 
 		try {
 			//Server settings
-			$this->phpMailer->SMTPDebug = 2;                 	// Enable verbose debug output
+			$this->phpMailer->SMTPDebug = 1;                 	// Enable verbose debug output
 			$this->phpMailer->isSMTP();                      	// Set mailer to use SMTP
 			$this->phpMailer->Host = $this->host;  				// Specify main and backup SMTP servers
 			$this->phpMailer->SMTPAuth = true;               	// Enable SMTP authentication
@@ -89,6 +88,7 @@ class PHPMailSender implements IMailSender
 			$this->phpMailer->Password = $this->password;    	// SMTP password
 			$this->phpMailer->SMTPSecure = $this->smtpSecure;	// Enable TLS encryption, `ssl` also accepted
 			$this->phpMailer->Port = $this->port;            	// TCP port to connect to
+			$this->phpMailer->CharSet = $mail->getCharset();
 
 			//Recipients
 			$this->phpMailer->setFrom($mail->getSender()->getEmail(), $mail->getSender()->getName());
