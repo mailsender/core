@@ -73,56 +73,50 @@ class PHPMailSender implements IMailSender
 	/**
 	 * Send created IMail entity.
 	 * @param IMail $mail
+	 * @throws \PHPMailer\PHPMailer\Exception
 	 */
 	public function send(IMail $mail): void
 	{
 		$emailContent = $this->mailService->getContent($mail);
 
-		try {
-			//Server settings
-			$this->phpMailer->SMTPDebug = 1;                 	// Enable verbose debug output
-			$this->phpMailer->isSMTP();                      	// Set mailer to use SMTP
-			$this->phpMailer->Host = $this->host;  				// Specify main and backup SMTP servers
-			$this->phpMailer->SMTPAuth = true;               	// Enable SMTP authentication
-			$this->phpMailer->Username = $this->username;    	// SMTP username
-			$this->phpMailer->Password = $this->password;    	// SMTP password
-			$this->phpMailer->SMTPSecure = $this->smtpSecure;	// Enable TLS encryption, `ssl` also accepted
-			$this->phpMailer->Port = $this->port;            	// TCP port to connect to
-			$this->phpMailer->CharSet = $mail->getCharset();
+		//Server settings
+		$this->phpMailer->SMTPDebug = 0;                 	// Enable verbose debug output
+		$this->phpMailer->isSMTP();                      	// Set mailer to use SMTP
+		$this->phpMailer->Host = $this->host;  				// Specify main and backup SMTP servers
+		$this->phpMailer->SMTPAuth = true;               	// Enable SMTP authentication
+		$this->phpMailer->Username = $this->username;    	// SMTP username
+		$this->phpMailer->Password = $this->password;    	// SMTP password
+		$this->phpMailer->SMTPSecure = $this->smtpSecure;	// Enable TLS encryption, `ssl` also accepted
+		$this->phpMailer->Port = $this->port;            	// TCP port to connect to
+		$this->phpMailer->CharSet = $mail->getCharset();
 
-			//Recipients
-			$this->phpMailer->setFrom($mail->getSender()->getEmail(), $mail->getSender()->getName());
+		//Recipients
+		$this->phpMailer->setFrom($mail->getSender()->getEmail(), $mail->getSender()->getName());
 
-			// TODO: budeme posilat jeden mail vzdy na jednu mailovou adresu?
-			$this->phpMailer->addAddress($mail->getRecipient()->getEmail(), $mail->getRecipient()->getName());		// Add a recipient
-			// TODO: Kopie se nebudou nikdy posilat? Mame jen skryté kopie.
-			foreach ($mail->getBccRecipients() as $bccRecipient)
-			{
-				$this->phpMailer->addBCC($bccRecipient->getEmail());
-			}
-
-			//Attachments
-			foreach ($mail->getAttachments() as $attachment)
-			{
-				$this->phpMailer->addAttachment($attachment->getPath() . '/' . $attachment->getFileName());		// Add attachments
-
-			}
-			// TODO: Budeme chtit prejmenovavat prilohy?
-//			$this->phpMailer->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-			//Content
-			$this->phpMailer->isHTML();
-			$this->phpMailer->Subject = $mail->getSubject();
-
-			$this->phpMailer->msgHTML($emailContent);
-
-			$this->phpMailer->send();
-			echo 'Message has been sent';
-		} catch (\Exception $e) {
-			echo 'Message could not be sent./n';
-			echo $e->getMessage() . '/n';
-			echo 'Mailer Error: ' . $this->phpMailer->ErrorInfo;
+		// TODO: budeme posilat jeden mail vzdy na jednu mailovou adresu?
+		$this->phpMailer->addAddress($mail->getRecipient()->getEmail(), $mail->getRecipient()->getName());		// Add a recipient
+		// TODO: Kopie se nebudou nikdy posilat? Mame jen skryté kopie.
+		foreach ($mail->getBccRecipients() as $bccRecipient)
+		{
+			$this->phpMailer->addBCC($bccRecipient->getEmail());
 		}
+
+		//Attachments
+		foreach ($mail->getAttachments() as $attachment)
+		{
+			$this->phpMailer->addAttachment($attachment->getPath() . '/' . $attachment->getFileName());		// Add attachments
+
+		}
+		// TODO: Budeme chtit prejmenovavat prilohy?
+//		$this->phpMailer->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+		//Content
+		$this->phpMailer->isHTML();
+		$this->phpMailer->Subject = $mail->getSubject();
+
+		$this->phpMailer->msgHTML($emailContent);
+
+		$this->phpMailer->send();
 	}
 
 }
