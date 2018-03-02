@@ -6,11 +6,10 @@
  * Time: 21:13
  */
 
-namespace Mailsender\MailSet\MailSenders;
+namespace Mailsender\Core\MailSenders;
 
 use Mailsender\Core\Entity\IMail;
 use Mailsender\Core\IMailService;
-use Mailsender\Core\MailSenders\IMailSender;
 use PHPMailer\PHPMailer\PHPMailer;
 
 class PHPMailSender implements IMailSender
