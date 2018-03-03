@@ -96,7 +96,7 @@ class PHPMailSender implements IMailSender
 		// TODO: budeme posilat jeden mail vzdy na jednu mailovou adresu?
 		$this->phpMailer->addAddress($mail->getRecipient()->getEmail(), $mail->getRecipient()->getName());		// Add a recipient
 		// TODO: Kopie se nebudou nikdy posilat? Mame jen skryté kopie.
-		foreach ($mail->getBccReKcipients() as $bccRecipient)
+		foreach ($mail->getBccRecipients() as $bccRecipient)
 		{
 			$this->phpMailer->addBCC($bccRecipient->getEmail());
 		}
