@@ -96,7 +96,7 @@ class PHPMailSender implements IMailSender
 		// TODO: budeme posilat jeden mail vzdy na jednu mailovou adresu?
 		$this->phpMailer->addAddress($mail->getRecipient()->getEmail(), $mail->getRecipient()->getName());		// Add a recipient
 		// TODO: Kopie se nebudou nikdy posilat? Mame jen skryté kopie.
-		foreach ($mail->getBccRecipients() as $bccRecipient)
+		foreach ($mail->getBccReKcipients() as $bccRecipient)
 		{
 			$this->phpMailer->addBCC($bccRecipient->getEmail());
 		}
@@ -105,7 +105,6 @@ class PHPMailSender implements IMailSender
 		foreach ($mail->getAttachments() as $attachment)
 		{
 			$this->phpMailer->addAttachment($attachment->getPath() . '/' . $attachment->getFileName());		// Add attachments
-
 		}
 		// TODO: Budeme chtit prejmenovavat prilohy?
 //		$this->phpMailer->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
@@ -117,6 +116,13 @@ class PHPMailSender implements IMailSender
 		$this->phpMailer->msgHTML($emailContent);
 
 		$this->phpMailer->send();
+		foreach ($mail->getAttachments() as $attachment)
+		{
+			if($attachment->isDeleteAfterSend())
+			{
+				unlink($attachment->getPath() . '/' . $attachment->getFileName());
+			}
+		}
 	}
 
 }
