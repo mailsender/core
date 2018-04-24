@@ -30,14 +30,5 @@
     "suggest": {
         "ramsey/uuid": "Allows generate uuid.",
         "phpmailer/phpmailer": "The classic email sending library for PHP."
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "http://192.168.202.101/git/sportisimo/core/database.git"
-        }
-    ],
-    "config": {
-        "secure-http": false
     }
 }
