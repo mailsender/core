@@ -1,54 +1,50 @@
 <?php declare(strict_types = 1);
-/**
- * Created by PhpStorm.
- * User: olisar
- * Date: 28.02.2018
- * Time: 21:13
- */
 
 namespace Mailsender\Core\MailSenders;
 
 use Mailsender\Core\Entity\IMail;
-use Mailsender\Core\IMailService;
+use Mailsender\Core\Exceptions\CreateMailException;
+use Mailsender\Core\IMailTypeService;
 use PHPMailer\PHPMailer\PHPMailer;
 
+/**
+ * Class PHPMailSender
+ * Copyright (c) 2017 Sportisimo s.r.o.
+ *
+ * @package Mailsender\Core\MailSenders
+ */
 class PHPMailSender implements IMailSender
 {
 
 	/**
-	 * @var IMailService
-	 */
-	private $mailService;
-
-	/**
 	 * @var PHPMailer
 	 */
-	private $phpMailer;
+	private PHPMailer $phpMailer;
 
 	/**
 	 * @var string
 	 */
-	private $host;
+	private string $host;
 
 	/**
 	 * @var int
 	 */
-	private $port;
+	private int $port;
 
 	/**
 	 * @var string
 	 */
-	private $username;
+	private string $username;
 
 	/**
 	 * @var string
 	 */
-	private $password;
+	private string $password;
 
 	/**
 	 * @var string
 	 */
-	private $smtpSecure;
+	private string $smtpSecure;
 
 	/**
 	 * PHPMailSender constructor.
@@ -57,27 +53,36 @@ class PHPMailSender implements IMailSender
 	 * @param string $username
 	 * @param string $password
 	 * @param string $smtpSecure
-	 * @param IMailService $mailService
 	 */
-	public function __construct(string $host, int $port, string $username, string $password, string $smtpSecure, IMailService $mailService)
+	public function __construct(string $host, int $port, string $username, string $password, string $smtpSecure)
 	{
 		$this->host = $host;
 		$this->port = $port;
 		$this->username = $username;
 		$this->password = $password;
 		$this->smtpSecure = $smtpSecure;
-		$this->mailService = $mailService;
 		$this->phpMailer = new PHPMailer(true);
 	}
 
-	/**
-	 * Send created IMail entity.
-	 * @param IMail $mail
-	 * @throws \PHPMailer\PHPMailer\Exception
-	 */
-	public function send(IMail $mail): void
+  /**
+   * Send created IMail entity.
+   *
+   * @param IMail                                  $mail
+   * @param \Mailsender\Core\IMailTypeService|null $mailType
+   *
+   * @throws \Mailsender\Core\Exceptions\CreateMailException
+   * @throws \PHPMailer\PHPMailer\Exception
+   */
+	public function send(IMail $mail, ?IMailTypeService $mailType = null): void
 	{
-		$emailContent = $this->mailService->getContent($mail);
+	  if($mailType !== null)
+	  {
+	    $emailContent = $mailType->getContent($mail);
+	  }
+	  else
+    {
+      throw new CreateMailException('Second parametr ($mailType) is necessery to build content of the mail.');
+    }
 
 		//Server settings
 		$this->phpMailer->SMTPDebug = 0;                 	// Enable verbose debug output

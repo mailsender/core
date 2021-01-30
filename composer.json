@@ -3,7 +3,7 @@
     "description": "Library make easy create mail and send it throw several interfaces",
     "type": "library",
     "require-dev": {
-        "phpstan/phpstan": "^0.8.5",
+        "phpstan/phpstan": "^0.12.68",
         "phpunit/phpunit": "^6.4",
         "ramsey/uuid": "^3.7",
         "phpmailer/phpmailer": "6.0.*",
@@ -25,7 +25,7 @@
         }
     },
     "require": {
-        "php": ">= 7.1"
+        "php": ">= 7.4"
     },
     "suggest": {
         "ramsey/uuid": "Allows generate uuid.",

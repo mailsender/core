@@ -1,25 +1,25 @@
 <?php declare(strict_types = 1);
-/**
- * Created by PhpStorm.
- * User: olisar
- * Date: 27.10.2017
- * Time: 21:29
- */
 
 namespace Mailsender\Core\Entity;
 
+/**
+ * Class Contact
+ * Copyright (c) 2017 Sportisimo s.r.o.
+ *
+ * @package Mailsender\Core\Entity
+ */
 class Contact implements IContact
 {
 
 	/**
 	 * @var string
 	 */
-	private $name;
+	private string $name;
 
 	/**
 	 * @var string
 	 */
-	private $email;
+	private string $email;
 
 	/**
 	 * Contact constructor.

@@ -1,30 +1,30 @@
 <?php declare(strict_types = 1);
-/**
- * Created by PhpStorm.
- * User: olisar
- * Date: 27.10.2017
- * Time: 21:31
- */
 
 namespace Mailsender\Core\Entity;
 
+/**
+ * Class Attachment
+ * Copyright (c) 2017 Sportisimo s.r.o.
+ *
+ * @package Mailsender\Core\Entity
+ */
 class Attachment implements IAttachment
 {
 
 	/**
 	 * @var string
 	 */
-	private $fileName;
+	private string $fileName;
 
 	/**
 	 * @var string
 	 */
-	private $path;
+	private string $path;
 
 	/**
 	 * @var bool
 	 */
-	private $deleteAfterSend = false;
+	private bool $deleteAfterSend = false;
 
 	/**
 	 * Attachment constructor.

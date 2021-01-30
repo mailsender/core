@@ -1,15 +1,14 @@
 <?php declare(strict_types = 1);
-/**
- * Created by PhpStorm.
- * User: olisar
- * Date: 27.10.2017
- * Time: 21:32
- */
 
 namespace Mailsender\Core;
 
 use Mailsender\Core\Entity\IMail;
 
+/**
+ * Interface IMailService
+ *
+ * @package Mailsender\Core
+ */
 interface IMailService
 {
 

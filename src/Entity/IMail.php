@@ -1,16 +1,16 @@
 <?php declare(strict_types = 1);
-/**
- * Created by PhpStorm.
- * User: olisar
- * Date: 27.10.2017
- * Time: 21:17
- */
 
 namespace Mailsender\Core\Entity;
 
 use DateTimeInterface;
+use JsonSerializable;
 
-interface IMail extends \JsonSerializable
+/**
+ * Interface IMail
+ *
+ * @package Mailsender\Core\Entity
+ */
+interface IMail extends JsonSerializable
 {
 
 	/**
