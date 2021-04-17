@@ -116,7 +116,7 @@ class PHPMailSender implements IMailSender
 
 		//Content
 		$this->phpMailer->isHTML();
-		$this->phpMailer->Subject = $mail->getSubject();
+		$this->phpMailer->Subject = $mail->getSubject() ?? '';
 
 		$this->phpMailer->msgHTML($emailContent);
 
