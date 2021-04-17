@@ -69,8 +69,8 @@ interface IMail extends JsonSerializable
 	public function getHashcode(): string;
 
 	/**
-	 * @return DateTimeInterface
+	 * @return DateTimeInterface|null
 	 */
-	public function getDateSent(): DateTimeInterface;
+	public function getDateSent(): ?DateTimeInterface;
 
 }
